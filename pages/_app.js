@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import Navbar from "../components/navbar/Navbar";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -30,7 +31,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <div className="w-screen h-fit flex flex-col items-center">
-        <div className="w-full max-w-[1400px] relative">
+        <Navbar/>
+        <div className="w-full max-w-6xl relative">
           <Component {...pageProps} />
         </div>
       </div>
