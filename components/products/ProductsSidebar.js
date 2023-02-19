@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductsSidebar = () => {
   return (
-    <div className="w-[14rem] bg-yellow-600 flex flex-col rounded-xl min-h-[calc(100vh-6rem)]">
+    <div className="w-[14rem] bg-yellow-600 flex flex-col rounded-xl h-[calc(100vh-6rem)] overflow-y-scroll">
       <div className="flex flex-col my-4 py-4 border-y pl-2 pr-4">
         <p className="font-semibold">Buscar</p>
         <input

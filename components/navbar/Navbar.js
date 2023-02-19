@@ -1,10 +1,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import MobileNavbar from "./MobileNavbar";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { modifyStatus } from "../../slices/cart/cartSlice";
 
 const Navbar = () => {
   const [userOptions, setUserOptions] = useState(false);
   const [mobileNavbar, setMobileNavbar] = useState(false);
+  const cart = useSelector((state) => state.cart.value.cart);
+  const cartStatus = useSelector((state) => state.cart.value.status);
+  const dispatch = useDispatch();
+
   return (
     <div className="bg-red-600 w-full h-[5rem] flex justify-center items-center">
       <div className="flex justify-between items-center w-[1152px] px-2">
@@ -42,9 +49,16 @@ const Navbar = () => {
               <p>Registrarse</p>
             </div>
           </div>
-          <Link href={"#"}>
+          <div
+            onClick={() => dispatch(modifyStatus())}
+            href={"#"}
+            className="relative"
+          >
             <i className="bx bx-cart "></i>
-          </Link>
+            <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full px-1 ">
+              {cart.length}
+            </span>
+          </div>
         </div>
         <div className="md:hidden">
           <i className="bx bx-cart text-3xl "></i>

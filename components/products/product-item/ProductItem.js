@@ -1,10 +1,17 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { add } from '../../../slices/cart/cartSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { add, remove } from "../../../slices/cart/cartSlice";
 
-const ProductItem = ({item}) => {
-  const cart = useSelector((state) => state.cart)
-  const dispatch = useDispatch()
-  console.log({cart})
+const ProductItem = ({ item }) => {
+  const cart = useSelector((state) => state.cart.value.cart);
+  const dispatch = useDispatch();
+  const handleCartAction = () => {
+    if (!cart.includes(item)) {
+      dispatch(add(item));
+    } else {
+      dispatch(remove(item));
+    }
+  };
+
   return (
     <div className="w-full h-[22rem] bg-yellow-400 rounded-xl overflow-hidden">
       <div className="w-full h-[14rem] bg-red-400">
@@ -21,7 +28,10 @@ const ProductItem = ({item}) => {
         </div>
         <div className="flex w-full justify-between items-center">
           <h5>${item.price}</h5>
-          <div onClick={()=> dispatch(add(item))} className="px-5 py-1 rounded-xl bg-pink-500 cursor-pointer">
+          <div
+            onClick={() => handleCartAction()}
+            className="px-5 py-1 rounded-xl bg-pink-500 cursor-pointer"
+          >
             <p>{cart.includes(item) ? "Agregado" : "Agregar"}</p>
           </div>
         </div>
