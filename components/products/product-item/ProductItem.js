@@ -1,6 +1,10 @@
-import React from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { add } from '../../../slices/cart/cartSlice';
 
 const ProductItem = ({item}) => {
+  const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+  console.log({cart})
   return (
     <div className="w-full h-[22rem] bg-yellow-400 rounded-xl overflow-hidden">
       <div className="w-full h-[14rem] bg-red-400">
@@ -17,8 +21,8 @@ const ProductItem = ({item}) => {
         </div>
         <div className="flex w-full justify-between items-center">
           <h5>${item.price}</h5>
-          <div className="px-5 py-1 rounded-xl bg-pink-500 cursor-pointer">
-            <p>Agregar</p>
+          <div onClick={()=> dispatch(add(item))} className="px-5 py-1 rounded-xl bg-pink-500 cursor-pointer">
+            <p>{cart.includes(item) ? "Agregado" : "Agregar"}</p>
           </div>
         </div>
       </div>
