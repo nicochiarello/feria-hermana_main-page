@@ -4,6 +4,8 @@ import CartItem from "../../components/process/cart/CartItem";
 
 const ProcessDetails = () => {
   const cart = useSelector((state) => state.cart.value.cart);
+  const cartPrice = useSelector((state) => state.cart.value.price)
+  console.log(cartPrice)
   return (
     <div className="w-full h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
       <div className="w-full h-[85%] p-5 flex flex-col justify-between shadow-2xl rounded-md ">
@@ -11,7 +13,7 @@ const ProcessDetails = () => {
           <h3>Detalles de compra</h3>
         </div>
         <div className="w-full h-[calc(100%-9rem)] overflow-y-scroll">
-          {cart.lenght && (
+          {cart.length && (
             <table className="w-full text-sm text-left text-gray-400 rounded h-fit">
               <thead className="border-b ">
                 <th scope="col" className="py-3 px-2"></th>
@@ -35,7 +37,7 @@ const ProcessDetails = () => {
         </div>
         <div className="flex w-full h-[4rem] justify-between items-center bg-red-300">
           <div className="flex gap-3">
-            <p>Total: $1500</p>
+            <p>Total: ${cartPrice}</p>
           </div>
           <div className="px-10 py-2 rounded-xl bg-pink-400 flex items-center justify-center">
             <p>Confirmar</p>

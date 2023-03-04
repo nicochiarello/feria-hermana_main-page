@@ -7,6 +7,7 @@ import Navbar from "../components/navbar/Navbar";
 import { Provider } from "react-redux";
 import { store } from "../stores/store";
 import Cart from "../components/cart/Cart";
+import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Provider store={store}>
+        <Toaster/>
         <div className="w-screen h-fit flex flex-col items-center relative">
           <Navbar />
           <div className="w-full max-w-6xl ">

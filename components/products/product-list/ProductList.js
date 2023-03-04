@@ -2,12 +2,16 @@ import { useState } from "react";
 import ProductItem from "../product-item/ProductItem";
 import ProductsFetcher from "../products-fetcher/ProductsFetcher";
 import { ClipLoader } from "react-spinners";
+import { useSelector } from "react-redux";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [nbPages, setNbPages] = useState(1);
   const [loader, setLoader] = useState(true);
+
+  const cart = useSelector((state)=> state.cart.value.cart)
+
 
   return (
     <div className="h-fit w-[calc(100%-14rem)] bg-green-600 px-2 grid grid-cols-3 gap-4 ">
@@ -25,7 +29,7 @@ const ProductList = () => {
         query={null}
       />
       {products.map((i) => {
-        return <ProductItem key={i._id} item={i} />;
+        return <ProductItem cart={cart} key={i._id} item={i} />;
       })}
     </div>
   );

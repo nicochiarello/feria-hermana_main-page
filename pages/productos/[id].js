@@ -1,19 +1,35 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { add } from "../../slices/cart/cartSlice";
+import { toast } from "react-hot-toast";
 import Link from "next/link";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [images, setImages] = useState({});
   const [selectedImage, setSelectedImage] = useState(0);
+  const [selected, setSelected] = useState(false);
   const router = useRouter();
   let { id } = router.query;
+  const dispatch = useDispatch();
 
-  console.log({ selectedImage });
+  const cart = useSelector((state) => state.cart.value.cart);
+
   const handleAddToCart = () => {
-    // To do
-    // This function adds item to the cart and then shows the previous page
+    if (!selected) {
+      dispatch(add(product));
+      router.push("/productos");
+      return toast.success("Producto Agregado!");
+    }
+  };
+
+  const handleShop = () => {
+    if (!selected) {
+      dispatch(add(product));
+    }
+    router.push("/compra/detalles");
   };
 
   useEffect(() => {
@@ -30,10 +46,26 @@ const ProductDetails = () => {
           }
 
           setImages(imagesAux);
+
+          let isSelected = cart.find((i) => i._id === res.data.product._id);
+          if (isSelected) {
+            setSelected(true);
+          } else {
+            setSelected(false);
+          }
         })
         .catch();
     }
   }, [id]);
+
+  useEffect(() => {
+    let isSelected = cart.find((i) => i._id === product._id);
+    if (isSelected) {
+      setSelected(true);
+    } else {
+      setSelected(false);
+    }
+  }, [cart]);
 
   const handleImagesBtn = (type) => {
     let imagesLenght = Object.keys(images).length;
@@ -104,14 +136,16 @@ const ProductDetails = () => {
             <p>{product.description}</p>
           </div>
           <div className="flex flex-col gap-4">
-            <p>Precio: ${product.price}</p>
+            <p>${product.price}</p>
             <button
               onClick={handleAddToCart}
               className="py-2 px-4 bg-red-600 rounded-lg"
             >
-              Agregar al carrito
+              {selected ? "Agregado" : "Agregar al carrito"}
             </button>
-            <Link href={"/compra/detalles"} className="py-2 px-4 bg-red-600 rounded-lg">Comprar</Link>
+            <div onClick={handleShop} className="py-2 px-4 bg-red-600 rounded-lg flex items-end justify-center">
+              <p>Comprar</p>
+            </div>
           </div>
         </div>
       </div>
