@@ -10,7 +10,7 @@ const ProductList = () => {
   const [loader, setLoader] = useState(true);
 
   return (
-    <div className="h-fit w-[calc(100%-14rem)] bg-green-600 px-2 py-2 grid grid-cols-3 gap-4 ">
+    <div className="h-fit w-[calc(100%-14rem)] bg-green-600 px-2 grid grid-cols-3 gap-4 ">
       {loader && (
         <div className="w-screen h-full absolute top-0 left-0 bg-opacity col-span-3 flex items-center justify-center">
           <ClipLoader color="white" size={60} />

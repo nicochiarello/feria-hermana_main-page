@@ -35,21 +35,6 @@ const Navbar = () => {
           <Link href={"/productos"}>Productos</Link>
           <Link href={"#"}>Contacto</Link>
           <div
-            onClick={() => setUserOptions((prev) => !prev)}
-            className="flex gap-1 "
-          >
-            <i className="bx bx-user font-bold relative"></i>
-            <i className={`bx bx-chevron-${userOptions ? "up" : "down"}`}></i>
-            <div
-              className={`${
-                !userOptions && "hidden"
-              } absolute  top-[5rem] right-[2rem] w-[fit] flex flex-col gap-1 py-1 pr-[4rem] pl-2 bg-green-400`}
-            >
-              <p>Iniciar sesion</p>
-              <p>Registrarse</p>
-            </div>
-          </div>
-          <div
             onClick={() => dispatch(modifyStatus())}
             href={"#"}
             className="relative"
