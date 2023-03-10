@@ -1,5 +1,5 @@
 import Head from "next/head";
-import MainLayout from "../components/layouts/MainLayout";
+
 import Navbar from "../components/navbar/Navbar";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <MainLayout />
+       
       </div>
     </>
   );

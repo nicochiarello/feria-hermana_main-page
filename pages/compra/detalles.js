@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import CartItem from "../../components/process/cart/CartItem";
+import Link from "next/link";
 
 const ProcessDetails = () => {
   const cart = useSelector((state) => state.cart.value.cart);
   const cartPrice = useSelector((state) => state.cart.value.price)
-  console.log(cartPrice)
+
   return (
     <div className="w-full h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
       <div className="w-full h-[85%] p-5 flex flex-col justify-between shadow-2xl rounded-md ">
@@ -39,9 +40,9 @@ const ProcessDetails = () => {
           <div className="flex gap-3">
             <p>Total: ${cartPrice}</p>
           </div>
-          <div className="px-10 py-2 rounded-xl bg-pink-400 flex items-center justify-center">
+          <Link href="procesamiento" className="px-10 py-2 rounded-xl bg-pink-400 flex items-center justify-center">
             <p>Confirmar</p>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

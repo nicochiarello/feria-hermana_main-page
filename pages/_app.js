@@ -35,10 +35,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Provider store={store}>
-        <Toaster/>
-        <div className="w-screen h-fit flex flex-col items-center relative">
+        <Toaster />
+        <div className="w-screen h-fit flex flex-col items-center relative font-oswald bg-bg overflow-hidden">
           <Navbar />
-          <div className="w-full max-w-6xl ">
+          <div className="w-full max-w-[1200px]">
             {/* {cartStatus && <Cart />} */}
 
             <Component {...pageProps} />

@@ -31,9 +31,9 @@ const ProductItem = ({ item, cart }) => {
   return (
     <Link
       href={`/productos/${item._id}`}
-      className="w-full h-[22rem] bg-yellow-400 rounded-xl overflow-hidden"
+      className="w-full h-[22rem] bg-white rounded-xl overflow-hidden shadow-xl font-light"
     >
-      <div className="w-full h-[14rem] bg-red-400">
+      <div className="w-full h-[14rem]">
         <Image
           className="w-full h-full object-cover"
           src={item.images[0].secureUrl}
@@ -42,13 +42,13 @@ const ProductItem = ({ item, cart }) => {
           height={500}
         />
       </div>
-      <div className="px-2 py-2 text-md font-semibold flex flex-col bg-blue-600 h-[8rem] justify-between">
+      <div className="px-2 py-2 text-md flex flex-col h-[8rem] justify-between">
         <div>
-          <h5>{item.name}</h5>
+          <h5 className="font-medium">{item.name}</h5>
           <p>Talle {item.size}</p>
         </div>
         <div className="flex w-full justify-between items-center">
-          <h5>${item.price}</h5>
+          <h5 className="font-normal">${item.price}</h5>
           <div
             onClick={handleCartAction}
             className="px-5 py-1 rounded-xl bg-pink-500 cursor-pointer"

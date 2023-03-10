@@ -13,8 +13,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="bg-red-600 w-full h-[5rem] flex justify-center items-center">
-      <div className="flex justify-between items-center w-[1152px] px-2">
+    <div className="bg-white w-screen h-[5rem] flex justify-center items-center">
+      <div className="flex justify-between items-center w-[1200px] px-2">
         {mobileNavbar && (
           <MobileNavbar onClose={() => setMobileNavbar(false)} />
         )}
@@ -25,14 +25,15 @@ const Navbar = () => {
           <i className="bx bx-menu-alt-left text-3xl "></i>
         </div>
         <div className="flex gap-3 items-center">
-          <div className="hidden md:flex w-[3rem] h-[3rem] items-center justify-center bg-blue-400 rounded-full">
+          <div className="hidden md:flex w-[3rem] h-[3rem] text-xl font-medium items-center justify-center bg-main rounded-full text-yellow">
             FH
           </div>
-          <p className="font-semibold text-xl">Feria Hermana</p>
+          <p className="font-semibold text-xl text-main">Feria Hermana</p>
         </div>
-        <div className="hidden h-full md:flex items-center gap-6 text-xl">
+        <div className="hidden h-full md:flex items-center gap-6 text-xl pr-2 font-light">
           <Link href={"#"}>Inicio</Link>
           <Link href={"/productos"}>Productos</Link>
+          <Link href={"#"}>Retiros</Link>
           <Link href={"#"}>Contacto</Link>
           <div
             onClick={() => dispatch(modifyStatus())}
@@ -40,7 +41,7 @@ const Navbar = () => {
             className="relative"
           >
             <i className="bx bx-cart "></i>
-            <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full px-1 ">
+            <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full px-1 text-main">
               {cart.length}
             </span>
           </div>

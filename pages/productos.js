@@ -7,7 +7,7 @@ const Productos = () => {
   const cartStatus = useSelector((state) => state.cart.value.status);
 
   return (
-    <div className="w-full bg-blue-400 h-fit flex py-2 ">
+    <div className="w-full h-fit flex py-2">
       {cartStatus && <Cart />}
       <ProductsSidebar />
       <ProductList />
