@@ -3,8 +3,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { modifyStatus } from "../../slices/cart/cartSlice";
 import { remove, emptyCart } from "../../slices/cart/cartSlice";
+import { useRouter } from "next/router";
 
 const Cart = () => {
+  const router = useRouter()
   const cart = useSelector((state) => state.cart.value.cart);
   const dispatch = useDispatch();
   const cartRef = useRef();
@@ -19,7 +21,7 @@ const Cart = () => {
     <div
       onClick={handleClick}
       ref={cartRef}
-      className="bg-black w-screen h-screen fixed top-0 left-0 flex justify-end bg-opacity"
+      className="bg-black w-screen h-screen fixed top-0 left-0 flex justify-end bg-opacity z-50"
     >
       <div className="w-[28rem] h-full bg-white py-3">
         <h4 className="text-center">Productos seleccionados</h4>
@@ -33,7 +35,7 @@ const Cart = () => {
                 <div className="w-[5rem] h-full rounded-xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
-                    src={i.img}
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + "/" + i.images[0].secureUrl}
                     alt=""
                   />
                 </div>
@@ -51,15 +53,15 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="w-full h-[12rem] bg-pink-300 flex flex-col items-center justify-between py-2">
-          <div className="flex justify-between items-center bg-green-300 w-full px-2 py-4">
+        <div className="w-full h-[12rem] flex flex-col items-center justify-between py-2">
+          <div className="flex justify-between items-center w-full px-2 py-4">
             <p>Vaciar carrito</p>
             <i
               onClick={() => dispatch(emptyCart())}
               className="bx bx-trash text-2xl cursor-pointer"
             ></i>
           </div>
-          <div className="flex justify-between items-center bg-green-300 w-full px-2 py-4">
+          <div className="flex justify-between items-center border-y  w-full px-2 py-4">
             <p>Total</p>
             <p>
               $
@@ -68,7 +70,7 @@ const Cart = () => {
               }, 0)}
             </p>
           </div>
-          <button className="px-6 py-2 bg-blue-600 rounded-lg">
+          <button onClick={()=> router.push("/compra/detalles")} className="px-6 py-2 bg-btn text-white w-full">
             <p>Confirmar compra</p>
           </button>
         </div>

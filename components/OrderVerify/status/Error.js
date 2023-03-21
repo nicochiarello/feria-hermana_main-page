@@ -2,7 +2,7 @@ import React from "react";
 
 const Error = () => {
   return (
-    <div className="w-full min-h-[calc(100vh-5rem)] bg-blue-400">
+    <div className="w-full min-h-[calc(100vh-5rem)]">
       <div className="w-full h-[14rem]  bg-red-500 flex items-center justify-center text-2xl font-bold text-white">
         {" "}
         <p>Error</p>

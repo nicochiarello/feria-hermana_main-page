@@ -89,24 +89,28 @@ const ProductDetails = () => {
 
   return (
     <div className="w-full min-h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
-      <div className="w-full h-[38rem] p-8 flex shadow-2xl rounded-md justify-between">
-        <div className="basis-[50%] h-[100%]  flex flex-col justify-between gap-8 border p-6 rounded-md">
-          <div className="w-full border border-gray-500 rounded-md h-[20rem]  relative">
+      <div className="w-full h-[38rem] p-8 flex shadow-2xl bg-white rounded-2xl justify-between">
+        <div className="basis-[55%] h-[100%]  flex flex-col justify-between gap-8 border p-6 rounded-md">
+          <div className="w-full h-[24rem] shadow-2xl relative overflow-hidden rounded-xl">
             <img
               className="w-full h-full object-contain"
               src={images[selectedImage]}
               alt=""
             />
 
-            <div className="w-full flex justify-between px-1 absolute top-[50%] -translate-y-[50%]">
-              <i
+            <div className="w-full flex justify-between absolute top-[50%] -translate-y-[50%]">
+              <div
                 onClick={() => handleImagesBtn(0)}
-                className="bx bx-chevron-left text-5xl"
-              ></i>
-              <i
+                className="w-[2rem] h-[2rem] rounded-full bg-btn flex items-center justify-center"
+              >
+                <i className="bx bx-chevron-left text-3xl cursor-pointer text-white"></i>
+              </div>
+              <div
                 onClick={() => handleImagesBtn(1)}
-                className="bx bx-chevron-right text-5xl"
-              ></i>
+                className="w-[2rem] h-[2rem] rounded-full bg-btn flex items-center justify-center"
+              >
+                <i className="bx bx-chevron-right text-3xl cursor-pointer text-white"></i>
+              </div>
             </div>
           </div>
           <div className="w-full h-[8rem]  flex gap-4">
@@ -115,8 +119,8 @@ const ProductDetails = () => {
                 <div
                   key={key}
                   onClick={() => setSelectedImage(+i[0])}
-                  className={`w-1/3 h-full border overflow-hidden ${
-                    selectedImage === +i[0] && " border-2 border-green-600"
+                  className={`w-1/3 h-full border overflow-hidden cursor-pointer ${
+                    selectedImage === +i[0] && " border-2 border-btn"
                   } rounded-md `}
                 >
                   <img
@@ -129,7 +133,7 @@ const ProductDetails = () => {
             })}
           </div>
         </div>
-        <div className="basis-[40%] h-full  flex flex-col justify-between px-4 pt-2">
+        <div className="basis-[45%] h-full  flex flex-col justify-between px-6 pt-2">
           <div className="flex flex-col gap-3">
             <p className="text-3xl font-normal">{product.name}</p>
             <p>Talle: {product.size}</p>
@@ -137,13 +141,16 @@ const ProductDetails = () => {
           </div>
           <div className="flex flex-col gap-4">
             <p>${product.price}</p>
-            <button
+            <div
               onClick={handleAddToCart}
-              className="py-2 px-4 bg-red-600 rounded-lg"
+              className="py-2 px-4 border border-btn rounded-lg cursor-pointer flex items-end justify-center "
             >
               {selected ? "Agregado" : "Agregar al carrito"}
-            </button>
-            <div onClick={handleShop} className="py-2 px-4 bg-red-600 rounded-lg flex items-end justify-center">
+            </div>
+            <div
+              onClick={handleShop}
+              className="py-2 px-4 bg-btn text-white rounded-lg flex items-end justify-center cursor-pointer"
+            >
               <p>Comprar</p>
             </div>
           </div>

@@ -1,23 +1,33 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import axios from "axios";
+import { ClipLoader } from "react-spinners";
 
 const Procesamiento = () => {
+  const router = useRouter()
   const price = useSelector((state) => state.cart.value.price);
   const cart = useSelector((state) => state.cart.value.cart);
   const [form, setForm] = useState({ total: price });
   const [deliveryDetails, setDeliveryDetails] = useState(false);
+  const [loader, setLoader] = useState(false)
   const [errors, setErrors] = useState({});
 
   const submitForm = () => {
-    console.log(form);
+    setLoader(true)
     axios
       .post(
         `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/orders/create`,
         { ...form, products: cart.map((i) => i._id) }
       )
-      .then((res) => console.log(res))
-      .catch((err) => setErrors(err.response.data));
+      .then((res) => {
+        setLoader(false)
+        router.push(res.data.mp)
+      })
+      .catch((err) => {
+        setErrors(err.response.data)
+        setLoader(false)
+      });
   };
 
   useEffect(() => {
@@ -33,11 +43,10 @@ const Procesamiento = () => {
     }
   }, [form.shipping_type]);
 
-  console.log({ form });
 
   return (
     <div className="w-full min-h-[calc(100vh-7rem)] px-4 flex items-center justify-center my-4">
-      <div className="w-full min-h-[85%] py-5 px-6 flex flex-col justify-center items-center shadow-2xl rounded-md ">
+      <div className="w-full min-h-[85%] py-5 px-6 flex flex-col justify-center items-center shadow-2xl rounded-xl bg-white">
         <div className="flex items-start w-full font-semibold border-b py-4 text-lg">
           <p>Detalles personales</p>
         </div>
@@ -167,13 +176,14 @@ const Procesamiento = () => {
             <p>Envio: $</p>
             <p>Total: ${price}</p>
           </div>
-          <div className="w-full flex items-center justify-end  py-2 rounded-md col-span-2">
-            <p
+          <div className="w-full flex items-center justify-end  py-1 rounded-md col-span-2">
+            <button
               onClick={submitForm}
-              className="w-[14rem] py-3 rounded-full bg-red-400 flex items-center justify-center"
+              disabled={loader}
+              className="w-[10rem] h-[3rem] buttony-2 py-2 rounded-xl bg-btn text-white flex items-center justify-center"
             >
-              Comprar
-            </p>
+              {loader ? <ClipLoader size={20} color={20}/> : "Comprar" }
+            </button>
           </div>
         </div>
       </div>

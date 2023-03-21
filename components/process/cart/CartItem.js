@@ -7,7 +7,7 @@ const CartItem = ({ item }) => {
         {" "}
         <img
           className="rounded-lg w-[4rem] h-[4rem] object-cover"
-          src={item.images[0].secureUrl}
+          src={process.env.NEXT_PUBLIC_IMAGE_URL + "/" + item.images[0].secureUrl}
           alt=""
         />
       </td>

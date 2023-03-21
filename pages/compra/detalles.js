@@ -9,9 +9,9 @@ const ProcessDetails = () => {
 
   return (
     <div className="w-full h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
-      <div className="w-full h-[85%] p-5 flex flex-col justify-between shadow-2xl rounded-md ">
+      <div className="w-full h-[85%] p-5 flex flex-col justify-between shadow-2xl bg-white rounded-xl ">
         <div className="flex w-full h-[4rem] justify-between items-center">
-          <h3>Detalles de compra</h3>
+          <h3 className="text-xl">Detalles de compra</h3>
         </div>
         <div className="w-full h-[calc(100%-9rem)] overflow-y-scroll">
           {cart.length && (
@@ -36,11 +36,11 @@ const ProcessDetails = () => {
             </table>
           )}
         </div>
-        <div className="flex w-full h-[4rem] justify-between items-center bg-red-300">
+        <div className="flex w-full h-[4rem] justify-between items-center border-t">
           <div className="flex gap-3">
             <p>Total: ${cartPrice}</p>
           </div>
-          <Link href="procesamiento" className="px-10 py-2 rounded-xl bg-pink-400 flex items-center justify-center">
+          <Link href="procesamiento" className="px-10 py-2 rounded-xl bg-btn text-white flex items-center justify-center">
             <p>Confirmar</p>
           </Link>
         </div>

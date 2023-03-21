@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "../stores/store";
 import Cart from "../components/cart/Cart";
 import { Toaster } from "react-hot-toast";
+import Footer from "../components/footer/Footer";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -36,13 +37,14 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <Toaster />
-        <div className="w-screen h-fit flex flex-col items-center relative font-oswald bg-bg overflow-hidden">
+        <div className="w-screen h-fit flex flex-col items-center relative font-oswald bg-bg overflow-hidden text-text overflow-x-hidden">
           <Navbar />
           <div className="w-full max-w-[1200px]">
             {/* {cartStatus && <Cart />} */}
 
             <Component {...pageProps} />
           </div>
+          <Footer/>
         </div>
       </Provider>
     </>

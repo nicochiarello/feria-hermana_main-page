@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'feria-hermana.s3.sa-east-1.amazonaws.com',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost.com',
+      },
     ],
   },
 }

@@ -36,7 +36,7 @@ const ProductItem = ({ item, cart }) => {
       <div className="w-full h-[14rem]">
         <Image
           className="w-full h-full object-cover"
-          src={item.images[0].secureUrl}
+          src={process.env.NEXT_PUBLIC_IMAGE_URL + "/" + item.images[0].secureUrl}
           alt={item.name}
           width={500}
           height={500}
@@ -44,14 +44,14 @@ const ProductItem = ({ item, cart }) => {
       </div>
       <div className="px-2 py-2 text-md flex flex-col h-[8rem] justify-between">
         <div>
-          <h5 className="font-medium">{item.name}</h5>
+          <h5 className="font-normal">{item.name}</h5>
           <p>Talle {item.size}</p>
         </div>
         <div className="flex w-full justify-between items-center">
-          <h5 className="font-normal">${item.price}</h5>
+          <h5 className="font-light"><span className="font-normal">$</span>{item.price}</h5>
           <div
             onClick={handleCartAction}
-            className="px-5 py-1 rounded-xl bg-pink-500 cursor-pointer"
+            className="px-8 py-1 rounded-md bg-btn cursor-pointer text-white"
           >
             <p>{selected ? "Agregado" : "Agregar"}</p>
           </div>
