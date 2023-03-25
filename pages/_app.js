@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <Toaster />
-        <div className="w-screen h-fit flex flex-col items-center relative font-oswald bg-bg overflow-hidden text-text overflow-x-hidden">
+        <div className="w-full h-fit flex flex-col items-center relative font-oswald bg-bg overflow-hidden text-text overflow-x-hidden">
           <Navbar />
           <div className="w-full max-w-[1200px]">
             {/* {cartStatus && <Cart />} */}
