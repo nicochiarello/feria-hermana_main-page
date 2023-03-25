@@ -1,9 +1,9 @@
 import React from "react";
 import sidebarFilters from "./products-sidebar/sidebarFilters";
 
-const ProductsSidebar = () => {
+const ProductsSidebar = ({categories}) => {
   return (
-    <div className="w-[15rem] bg-white flex flex-col rounded-xl h-[calc(100vh-6rem)] min-h-[40rem] shadow-2xl">
+    <div className="hidden md:flex w-[15rem] bg-white flex-col rounded-xl h-[calc(100vh-6rem)] min-h-[40rem] shadow-2xl">
       <div className="flex flex-col my-2  py-4 pl-2 border-b pr-4 gap-1">
         <p className="font-normal text-lg">Buscar</p>
         <div className="relative">
@@ -32,12 +32,12 @@ const ProductsSidebar = () => {
 
       <div className="flex flex-col py-4 pl-2 gap-2 pr-4 ">
         <p className="font-normal text-lg">Categorias:</p>
-        {Array.from({ length: 4 }, (item, key) => (
-          <div key={key}>
+        {categories.map((item, key) => (
+          <div key={item}>
             {" "}
             <div className="flex gap-2 items-center font-light">
               <div className="w-4 h-4 rounded-full  bg-secondarybg"></div>
-              <p>Opt1</p>
+              <p>{item.name}</p>
             </div>
           </div>
         ))}

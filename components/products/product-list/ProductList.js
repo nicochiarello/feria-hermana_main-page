@@ -4,8 +4,9 @@ import ProductsFetcher from "../products-fetcher/ProductsFetcher";
 import { ClipLoader } from "react-spinners";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import MobileFilter from "../mobile-filter/MobileFilter";
 
-const ProductList = () => {
+const ProductList = ({categories}) => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
   const [nbPages, setNbPages] = useState(1);
@@ -13,23 +14,23 @@ const ProductList = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const cart = useSelector((state) => state.cart.value.cart);
+  const [mobileFilter, setMobileFilter] = useState(true);
 
-  // console.log(nbPages);
-
-  useEffect(()=>{
-    if(router.query.page){
-      setPage(+router.query.page)
+  useEffect(() => {
+    if (router.query.page) {
+      setPage(+router.query.page);
     }
-  }, [router.query])
-
+  }, [router.query]);
 
   return (
-    <div className="h-fit w-[calc(100%-15rem)] py-1 px-3 grid grid-cols-2 lg:grid-cols-3 gap-4 ">
+    <div className="h-fit w-full md:w-[calc(100%-15rem)] py-1 px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
       {loader && (
         <div className="w-screen h-full absolute top-0 left-0 bg-opacity col-span-3 flex items-center justify-center">
           <ClipLoader color="white" size={60} />
         </div>
       )}
+
+      {mobileFilter && <MobileFilter categories={categories} onClose={() => setMobileFilter(false)} />}
 
       <ProductsFetcher
         page={page}
@@ -39,19 +40,24 @@ const ProductList = () => {
         query={null}
       />
 
-      <div className="w-full col-span-3 py-4 bg-white flex justify-between items-center px-4">
-        <i className="bx bx-chevron-left"></i>
+      <div className="w-full col-span-full py-4 bg-white flex justify-between md:justify-end items-center px-4 rounded-lg">
+        <div
+          onClick={() => setMobileFilter(true)}
+          className="md:hidden w-[2rem] h-[2rem] rounded-full bg-btn flex items-center justify-center cursor-pointer"
+        >
+          <i className="bx bx-filter text-xl text-white"></i>
+        </div>
         <div className="flex gap-4 items-center">
           <i className="bx bx-chevron-left"></i>
           <div className="flex gap-2">
             {Array.from({ length: nbPages }, (i, key) => (
               <p
-              onClick={() =>
-                router.push({
-                  pathname: router.pathname,
-                  query: { ...router.query, page: key + 1 },
-                })
-              }
+                onClick={() =>
+                  router.push({
+                    pathname: router.pathname,
+                    query: { ...router.query, page: key + 1 },
+                  })
+                }
                 className={`${page === key + 1 && "text-btn"} cursor-pointer`}
                 key={key}
               >

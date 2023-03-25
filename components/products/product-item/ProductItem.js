@@ -31,7 +31,7 @@ const ProductItem = ({ item, cart }) => {
   return (
     <Link
       href={`/productos/${item._id}`}
-      className="w-full h-[22rem] bg-white rounded-xl overflow-hidden shadow-xl font-light"
+      className="w-full h-[22rem] bg-white rounded-xl overflow-hidden shadow-xl font-light max-w-[25rem]"
     >
       <div className="w-full h-[14rem]">
         <Image
