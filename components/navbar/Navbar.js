@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import MobileNavbar from "./MobileNavbar";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { modifyStatus } from "../../slices/cart/cartSlice";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const [userOptions, setUserOptions] = useState(false);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const cart = useSelector((state) => state.cart.value.cart);
   const cartStatus = useSelector((state) => state.cart.value.status);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setMobileNavbar(false);
+  }, [router]);
 
   return (
     <div className="bg-white w-screen h-[5rem] flex justify-center items-center">
