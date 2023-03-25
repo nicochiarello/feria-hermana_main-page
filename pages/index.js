@@ -88,7 +88,7 @@ export default function Home() {
         <div className="w-full h-[40rem] bg-green-400 relative">
           <img className="object-cover w-full h-full" src="/fh2.jpeg" alt="" />
           <div className="h-[100%] w-[100%] py-4  absolute top-0 left-0 flex items-center justify-center ">
-            <div className="w-[90%] md:w-[60%] h-[100%] bg-btn rounded-sm text-black flex flex-col items-center justify-between py-[4rem]">
+            <div className="w-[90%] md:w-[60%] md:min-w-[40rem] h-[100%] bg-btn rounded-sm text-black flex flex-col items-center justify-between py-[4rem]">
               <div className="text-center flex gap-4 flex-col px-2 md:px-8">
                 <h4 className="text-[50px] md:text-[75px]">SUMATE A LA MODA CIRCULAR</h4>
                 <p className="text-2xl md:text-3xl">¡Vestirte con onda es posible!</p>
