@@ -10,6 +10,7 @@ const Productos = () => {
     <div className="w-full h-fit flex py-2">
       {cartStatus && <Cart />}
       <ProductsSidebar />
+     
       <ProductList />
     </div>
   );

@@ -3,7 +3,7 @@ import sidebarFilters from "./products-sidebar/sidebarFilters";
 
 const ProductsSidebar = () => {
   return (
-    <div className="w-[15rem] bg-white flex flex-col rounded-xl min-h-[calc(100vh-6rem)] shadow-2xl">
+    <div className="w-[15rem] bg-white flex flex-col rounded-xl h-[calc(100vh-6rem)] min-h-[40rem] shadow-2xl">
       <div className="flex flex-col my-2  py-4 pl-2 border-b pr-4 gap-1">
         <p className="font-normal text-lg">Buscar</p>
         <div className="relative">
