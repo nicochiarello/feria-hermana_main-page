@@ -1,15 +1,15 @@
 export const sidebarFilters = [
     {
         name: "Mas nuevos",
-        query: "createdAt"
+        query: "-createdAt",
     },
     {
         name: "Precio (mayor a menor)",
-        query: "price"
+        query: "-price",
     },
     {
         name: "Precio (menor a mayor)",
-        query: "-price"
+        query: "price",
     },
 ]
 

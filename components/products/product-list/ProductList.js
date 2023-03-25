@@ -6,15 +6,15 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import MobileFilter from "../mobile-filter/MobileFilter";
 
-const ProductList = ({categories}) => {
+const ProductList = ({categories, filters, setFilters}) => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
   const [nbPages, setNbPages] = useState(1);
   const [loader, setLoader] = useState(true);
-  const [query, setQuery] = useState("");
+
   const [page, setPage] = useState(1);
   const cart = useSelector((state) => state.cart.value.cart);
-  const [mobileFilter, setMobileFilter] = useState(true);
+  const [mobileFilter, setMobileFilter] = useState(false);
 
   useEffect(() => {
     if (router.query.page) {
@@ -30,14 +30,14 @@ const ProductList = ({categories}) => {
         </div>
       )}
 
-      {mobileFilter && <MobileFilter categories={categories} onClose={() => setMobileFilter(false)} />}
+      {mobileFilter && <MobileFilter filters={filters} setFilters={setFilters} categories={categories} onClose={() => setMobileFilter(false)} />}
 
       <ProductsFetcher
         page={page}
         setData={setProducts}
         setLoader={setLoader}
         setNbPages={setNbPages}
-        query={null}
+        query={filters}
       />
 
       <div className="w-full col-span-full py-4 bg-white flex justify-between md:justify-end items-center px-4 rounded-lg">

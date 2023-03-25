@@ -3,13 +3,21 @@ import axios from "axios";
 
 
 const ProductsFetcher = ({ setData, query, setLoader, setNbPages, page }) => {
+  console.log({query})
   useEffect(() => {
+    let queryAux = ""
+    if(query.sort){
+      queryAux += `&sort=${query.sort}`
+    }
+    if(query.category){
+      queryAux += `&category=${query.category}`
+    }
     let source = axios.CancelToken.source();
     const fetchProducts = async () => {
       setLoader(true);
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/products?page=${page}`,
+          `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/products?page=${page}${queryAux && queryAux}`,
           {
             cancelToken: source.token,
           }
