@@ -1,16 +1,24 @@
-import React from "react";
+import {useEffect} from "react";
 import { useSelector } from "react-redux";
 import CartItem from "../../components/process/cart/CartItem";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ProcessDetails = () => {
   const cart = useSelector((state) => state.cart.value.cart);
   const cartPrice = useSelector((state) => state.cart.value.price)
+  const router = useRouter()
+
+  useEffect(()=>{
+    if(!cart.length){
+      router.push("/productos")
+    }
+  },[cart])
 
   return (
     <div className="w-full h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
-      <div className="w-full h-[85%] p-5 flex flex-col justify-between shadow-2xl bg-white rounded-xl ">
-        <div className="flex w-full h-[4rem] justify-between items-center">
+      <div className="w-full h-[85%] px-2 sm:p-5 flex flex-col justify-between shadow-2xl bg-white rounded-xl ">
+        <div className="flex w-full h-[4rem] justify-center sm:justify-between items-center">
           <h3 className="text-xl">Detalles de compra</h3>
         </div>
         <div className="w-full h-[calc(100%-9rem)] overflow-y-scroll">

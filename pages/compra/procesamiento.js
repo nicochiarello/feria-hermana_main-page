@@ -3,30 +3,37 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import Cart from "../../components/cart/Cart";
 
 const Procesamiento = () => {
-  const router = useRouter()
+  const router = useRouter();
   const price = useSelector((state) => state.cart.value.price);
   const cart = useSelector((state) => state.cart.value.cart);
   const [form, setForm] = useState({ total: price });
   const [deliveryDetails, setDeliveryDetails] = useState(false);
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false);
   const [errors, setErrors] = useState({});
 
+  useEffect(() => {
+    if (!cart.length) {
+      router.push("/productos");
+    }
+  }, [cart]);
+
   const submitForm = () => {
-    setLoader(true)
+    setLoader(true);
     axios
       .post(
         `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/orders/create`,
         { ...form, products: cart.map((i) => i._id) }
       )
       .then((res) => {
-        setLoader(false)
-        router.push(res.data.mp)
+        setLoader(false);
+        router.push(res.data.mp);
       })
       .catch((err) => {
-        setErrors(err.response.data)
-        setLoader(false)
+        setErrors(err.response.data);
+        setLoader(false);
       });
   };
 
@@ -43,14 +50,13 @@ const Procesamiento = () => {
     }
   }, [form.shipping_type]);
 
-
   return (
-    <div className="w-full min-h-[calc(100vh-7rem)] px-4 flex items-center justify-center my-4">
+    <div className="w-full min-h-[calc(100vh-7rem)] px-2 sm:px-4 flex items-center justify-center my-4">
       <div className="w-full min-h-[85%] py-5 px-6 flex flex-col justify-center items-center shadow-2xl rounded-xl bg-white">
         <div className="flex items-start w-full font-semibold border-b py-4 text-lg">
           <p>Detalles personales</p>
         </div>
-        <div className=" w-full h-fit gap-5 grid grid-cols-2 py-4 overflow-hidden text-md overflow-y-scroll border-b">
+        <div className=" w-full h-fit gap-5 grid grid-cols-1 sm:grid-cols-2 py-4 overflow-hidden text-md overflow-y-scroll border-b">
           <div className="flex flex-col gap-1 w-full">
             <label htmlFor="">Nombre y apellido</label>
             <input
@@ -116,7 +122,7 @@ const Procesamiento = () => {
             )}
           </div>
           <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="">Tipo de retiro</label>
+            <label htmlFor="">Lugar de retiro</label>
             <select
               onChange={(e) =>
                 setForm({ ...form, shipping_type: +e.target.value })
@@ -130,7 +136,7 @@ const Procesamiento = () => {
               </option>
               <option value="0">Godoy cruz</option>
               <option value="1">Centro</option>
-              <option value="2">Domicilio</option>
+              {/* <option value="2">Domicilio</option> */}
             </select>
             {errors.shipping_type && (
               <span className="text-red-600 text-sm px-1">
@@ -139,7 +145,9 @@ const Procesamiento = () => {
             )}
           </div>
 
-          {deliveryDetails && (
+          {/* This part of the code is for delivery options if needed */}
+
+          {/* {deliveryDetails && (
             <>
               {" "}
               <div className="flex flex-col gap-1 w-full">
@@ -163,17 +171,16 @@ const Procesamiento = () => {
                 />
               </div>
             </>
-          )}
+          )} */}
         </div>
         <div className="flex flex-col gap-4 w-full">
           <div className="py-4 w-full flex flex-col gap-1 rounded-md col-span-2 border-b">
             <p>
-              Tipo de retiro:{" "}
+              Lugar de retiro:{" "}
               {(form.shipping_type === 0 && "Godoy cruz") ||
-                (form.shipping_type === 1 && "Centro") ||
-                (form.shipping_type === 2 && "Domicilio")}{" "}
+                (form.shipping_type === 1 && "Centro")}
             </p>
-            <p>Envio: $</p>
+            {/* <p>Envio: $</p> */}
             <p>Total: ${price}</p>
           </div>
           <div className="w-full flex items-center justify-end  py-1 rounded-md col-span-2">
@@ -182,7 +189,7 @@ const Procesamiento = () => {
               disabled={loader}
               className="w-[10rem] h-[3rem] buttony-2 py-2 rounded-xl bg-btn text-white flex items-center justify-center"
             >
-              {loader ? <ClipLoader size={20} color={20}/> : "Comprar" }
+              {loader ? <ClipLoader size={20} color={20} /> : "Comprar"}
             </button>
           </div>
         </div>
