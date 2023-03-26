@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cart from "../components/cart/Cart";
+import { useSelector } from "react-redux";
 
 const Retiros = () => {
   const [withdrawals, setWithdrawals] = useState([]);
+  const cartStatus = useSelector((state) => state.cart.value.status);
 
   useEffect(() => {
     axios
@@ -14,6 +17,7 @@ const Retiros = () => {
 
   return (
     <div className="w-full min-h-[calc(100vh-5rem)] px-2 flex items-center justify-center">
+      {cartStatus && <Cart />}
       <div className="w-[900px] h-[500px] relative rounded-xl bg-white shadow-2xl flex items-center justify-center">
         <div className="absolute top-[0] px-12 py-2 bg-main rounded-2xl text-white -translate-y-[1rem] ">
           <h3>Retiros</h3>
