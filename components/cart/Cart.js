@@ -13,6 +13,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(modifyStatus());
+    
   }, [router]);
 
   const handleClick = (e) => {

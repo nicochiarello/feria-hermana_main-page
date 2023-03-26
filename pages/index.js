@@ -1,8 +1,9 @@
 import Head from "next/head";
-
-import Navbar from "../components/navbar/Navbar";
+import Cart from "../components/cart/Cart";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const cartStatus = useSelector((state) => state.cart.value.status);
   return (
     <>
       <Head>
@@ -12,6 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full flex-col gap-12 pt-4 relative">
+      {cartStatus && <Cart />}
         <div className="w-full h-[40rem] h- md:h-[38rem] rounded-sm overflow-hidden flex flex-col md:flex-row">
           <div className="flex items-center justify-center h-[50%] md:h-[100%] md:w-[50%] bg-black text-btn relative">
             <img
@@ -101,7 +103,7 @@ export default function Home() {
         </div>
         <div className="w-full h-fit py-8 flex items-center justify-center">
           <div className="flex flex-col md:flex-row gap-2 justify-center items-center text-btn">
-            <i className="bx bxl-instagram text-[100px]"></i>
+            <i className="bx bxl-instagram text-[80px] md:text-[100px]"></i>
             <div className="flex flex-col items-center md:items-start md:justify-center">
               <p className="text-2xl font-semibold ">
                 Seguinos en nuestras redes
@@ -110,7 +112,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full h-fit md:h-[18rem] flex flex-col md:flex-row mb-8 ">
+        <div className="w-full h-fit md:h-[18rem] flex flex-col md:flex-row mb-8">
           <div className="w-full md:w-1/3 h-full flex flex-col  py-4 items-center justify-center gap-2 px-6 border-b md:border-r md:border-b-0 border-black">
             <i className="bx bxs-truck text-[60px] md:text-[80px]"></i>
             <div className="flex flex-col gap-1 text-xl text-center">
