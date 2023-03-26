@@ -30,15 +30,15 @@ const Navbar = () => {
         >
           <i className="bx bx-menu-alt-left text-3xl "></i>
         </div>
-        <div className="flex gap-3 items-center">
+        <Link href={"/"} className="flex gap-3 items-center">
           <div className="hidden md:flex w-[3rem] h-[3rem] text-xl font-medium items-center justify-center bg-main rounded-full text-yellow">
             FH
           </div>
           <p className="font-semibold text-xl text-main">Feria Hermana</p>
-        </div>
+        </Link>
         <div className="hidden h-full md:flex items-center gap-6 text-xl pr-2 font-light">
           <Link href={"#"}>Inicio</Link>
-          <Link href={"/productos"}>Productos</Link>
+          <Link href={"/productos?page=1"}>Productos</Link>
           <Link href={"#"}>Retiros</Link>
           <Link href={"#"}>Contacto</Link>
           <div
@@ -52,7 +52,7 @@ const Navbar = () => {
             </span>
           </div>
         </div>
-        <div className="md:hidden">
+        <div onClick={() => dispatch(modifyStatus())} className="md:hidden">
           <i className="bx bx-cart text-3xl "></i>
         </div>
       </div>

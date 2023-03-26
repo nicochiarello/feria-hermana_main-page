@@ -42,7 +42,9 @@ const ProductDetails = () => {
           setProduct(res.data.product);
           let imagesAux = {};
           for (let img of Object.entries(res.data.product.images)) {
-            imagesAux[img[0]] = img[1].secureUrl;
+            let imgUrl =
+              process.env.NEXT_PUBLIC_IMAGE_URL + "/" + img[1].secureUrl;
+            imagesAux[img[0]] = imgUrl;
           }
 
           setImages(imagesAux);

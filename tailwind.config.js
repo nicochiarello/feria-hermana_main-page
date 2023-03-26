@@ -16,12 +16,15 @@ module.exports = {
         yellow: "#FEDC5C",
         btn: "#FFB5DC",
         text: "#4E4E4E",
-        secondarybg: "#EEDED4"
+        secondarybg: "#EEDED4",
       },
       fontFamily: {
         oswald: ["Oswald", "cursive"],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar-hide"),
+    // ...
+  ],
 };

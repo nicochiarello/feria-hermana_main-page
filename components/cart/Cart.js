@@ -6,7 +6,7 @@ import { remove, emptyCart } from "../../slices/cart/cartSlice";
 import { useRouter } from "next/router";
 
 const Cart = () => {
-  const router = useRouter()
+  const router = useRouter();
   const cart = useSelector((state) => state.cart.value.cart);
   const dispatch = useDispatch();
   const cartRef = useRef();
@@ -21,11 +21,16 @@ const Cart = () => {
     <div
       onClick={handleClick}
       ref={cartRef}
-      className="bg-black w-screen h-screen fixed top-0 left-0 flex justify-end bg-opacity z-50"
+      className="bg-black w-full h-screen fixed top-0 left-0 flex justify-end bg-opacity z-50"
     >
-      <div className="w-[28rem] h-full bg-white py-3">
-        <h4 className="text-center">Productos seleccionados</h4>
-        <div className="flex flex-col my-2 h-[calc(100%-14rem)] overflow-scroll">
+      <div className="w-full sm:w-[28rem] h-full bg-white py-3 px-2">
+        <div className="flex items-center justify-between sm:justify-center">
+          <h4 className="text-lg">Productos seleccionados</h4>
+          <div onClick={()=> dispatch(modifyStatus())} className="sm:hidden flex items-center cursor-pointer">
+            <i className=" bx bx-x text-3xl"></i>
+          </div>
+        </div>
+        <div className="flex flex-col my-2 h-[calc(100%-14rem)] scrollbar-hide">
           {cart.map((i, key) => (
             <div
               className="w-full border-b py-3 h-[6.5rem] flex px-1 justify-between"
@@ -35,7 +40,11 @@ const Cart = () => {
                 <div className="w-[5rem] h-full rounded-xl overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
-                    src={process.env.NEXT_PUBLIC_IMAGE_URL + "/" + i.images[0].secureUrl}
+                    src={
+                      process.env.NEXT_PUBLIC_IMAGE_URL +
+                      "/" +
+                      i.images[0].secureUrl
+                    }
                     alt=""
                   />
                 </div>
@@ -62,7 +71,7 @@ const Cart = () => {
             ></i>
           </div>
           <div className="flex justify-between items-center border-y  w-full px-2 py-4">
-            <p>Total</p>
+            <p>Total:</p>
             <p>
               $
               {cart.reduce((acc, i) => {
@@ -70,7 +79,10 @@ const Cart = () => {
               }, 0)}
             </p>
           </div>
-          <button onClick={()=> router.push("/compra/detalles")} className="px-6 py-2 bg-btn text-white w-full">
+          <button
+            onClick={() => router.push("/compra/detalles")}
+            className="px-6 py-2 bg-btn text-white w-full rounded-xl"
+          >
             <p>Confirmar compra</p>
           </button>
         </div>

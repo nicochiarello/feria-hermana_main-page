@@ -23,7 +23,7 @@ const ProductList = ({categories, filters, setFilters}) => {
   }, [router.query]);
 
   return (
-    <div className="h-fit w-full md:w-[calc(100%-15rem)] py-1 px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+    <div className="h-fit w-full md:w-[calc(100%-15rem)] px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
       {loader && (
         <div className="w-screen h-full absolute top-0 left-0 bg-opacity col-span-3 flex items-center justify-center">
           <ClipLoader color="white" size={60} />
@@ -40,7 +40,7 @@ const ProductList = ({categories, filters, setFilters}) => {
         query={filters}
       />
 
-      <div className="w-full col-span-full py-4 bg-white flex justify-between md:justify-end items-center px-4 rounded-lg">
+      <div className="w-full col-span-full py-4 bg-white flex justify-between md:justify-end items-center px-4 rounded-xl">
         <div
           onClick={() => setMobileFilter(true)}
           className="md:hidden w-[2rem] h-[2rem] rounded-full bg-btn flex items-center justify-center cursor-pointer"
