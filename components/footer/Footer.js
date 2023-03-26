@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -11,14 +12,16 @@ const Footer = () => {
           <p className="text-xl">Feria Hermana</p>
         </div>
         <div className="flex flex-col gap-2 items-center">
-          <p>Inicio</p>
-          <p>Productos</p>
-          <p>Contacto</p>
+          <Link href={"/productos?page=1"}>Productos</Link>
+          <Link href={"/retiros"}>Retiros</Link>
+          <a href={"https://wa.me/5492613662494"}>Contacto</a>
         </div>
         <div className="flex flex-col gap-2 items-center">
           <p>Redes sociales</p>
-          <p>Instagram</p>
-          <p>Whatsapp</p>
+          <a href={"https://www.instagram.com/feriahermana/?hl=es"}>
+            Instagram
+          </a>
+          <a href={"https://wa.me/5492613662494"}>Whatsapp</a>
         </div>
       </div>
     </div>
