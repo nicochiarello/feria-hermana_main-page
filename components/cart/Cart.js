@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { modifyStatus } from "../../slices/cart/cartSlice";
@@ -10,6 +10,10 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart.value.cart);
   const dispatch = useDispatch();
   const cartRef = useRef();
+
+  useEffect(() => {
+    dispatch(modifyStatus());
+  }, [router]);
 
   const handleClick = (e) => {
     if (e.target === cartRef.current) {
@@ -26,7 +30,10 @@ const Cart = () => {
       <div className="w-full sm:w-[28rem] h-full bg-white py-3 px-2">
         <div className="flex items-center justify-between sm:justify-center">
           <h4 className="text-lg">Productos seleccionados</h4>
-          <div onClick={()=> dispatch(modifyStatus())} className="sm:hidden flex items-center cursor-pointer">
+          <div
+            onClick={() => dispatch(modifyStatus())}
+            className="sm:hidden flex items-center cursor-pointer"
+          >
             <i className=" bx bx-x text-3xl"></i>
           </div>
         </div>

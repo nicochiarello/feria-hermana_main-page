@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "../../slices/cart/cartSlice";
 import { toast } from "react-hot-toast";
-import Link from "next/link";
+import Cart from "../../components/cart/Cart";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
@@ -16,6 +16,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart.value.cart);
+  const cartStatus = useSelector((state) => state.cart.value.status);
 
   const handleAddToCart = () => {
     if (!selected) {
@@ -90,9 +91,10 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="w-full min-h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
-      <div className="w-full h-[38rem] p-8 flex shadow-2xl bg-white rounded-2xl justify-between">
-        <div className="basis-[55%] h-[100%]  flex flex-col justify-between gap-8 border p-6 rounded-md">
+    <div className="w-full min-h-[calc(100vh-5rem)]  px-2 flex items-center justify-center gap-6 ">
+      {cartStatus && <Cart />}
+      <div className="w-full sm:px-12 max-w-[50rem] my-4 py-4 lg:max-w-full md:w-full h-fit xl:h-[38rem] lg:p-8 flex flex-col gap-4 lg:flex-row shadow-2xl bg-white rounded-2xl justify-between">
+        <div className="w-full h-[100%] lg:basis-[55%]  flex flex-col justify-between gap-4 lg:gap-8 lg:border px-1 lg:p-6 rounded-md">
           <div className="w-full h-[24rem] shadow-2xl relative overflow-hidden rounded-xl">
             <img
               className="w-full h-full object-contain"
@@ -115,13 +117,13 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <div className="w-full h-[8rem]  flex gap-4">
+          <div className="w-full h-fit lg:h-[8rem] grid grid-cols-3 lg:grid-cols-5 gap-2">
             {Object.entries(images).map((i, key) => {
               return (
                 <div
                   key={key}
                   onClick={() => setSelectedImage(+i[0])}
-                  className={`w-1/3 h-full border overflow-hidden cursor-pointer ${
+                  className={`w-full h-[8rem] border overflow-hidden cursor-pointer ${
                     selectedImage === +i[0] && " border-2 border-btn"
                   } rounded-md `}
                 >
@@ -135,7 +137,7 @@ const ProductDetails = () => {
             })}
           </div>
         </div>
-        <div className="basis-[45%] h-full  flex flex-col justify-between px-6 pt-2">
+        <div className="lg:basis-[45%] min-h-[18rem]  flex flex-col justify-between px-2 lg:px-6 pt-2">
           <div className="flex flex-col gap-3">
             <p className="text-3xl font-normal">{product.name}</p>
             <p>Talle: {product.size}</p>

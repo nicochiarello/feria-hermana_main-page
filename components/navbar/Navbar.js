@@ -37,14 +37,14 @@ const Navbar = () => {
           <p className="font-semibold text-xl text-main">Feria Hermana</p>
         </Link>
         <div className="hidden h-full md:flex items-center gap-6 text-xl pr-2 font-light">
-          <Link href={"#"}>Inicio</Link>
+          <Link href={"/"}>Inicio</Link>
           <Link href={"/productos?page=1"}>Productos</Link>
-          <Link href={"#"}>Retiros</Link>
+          <Link href={"/retiros"}>Retiros</Link>
           <Link href={"#"}>Contacto</Link>
           <div
             onClick={() => dispatch(modifyStatus())}
             href={"#"}
-            className="relative"
+            className="relative cursor-pointer"
           >
             <i className="bx bx-cart "></i>
             <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full px-1 text-main">
