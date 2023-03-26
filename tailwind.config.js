@@ -21,6 +21,10 @@ module.exports = {
       fontFamily: {
         oswald: ["Oswald", "cursive"],
       },
+      screens: {
+        'xs': '480px',
+        // => @media (min-width: 992px) { ... }
+      },
     },
   },
   plugins: [

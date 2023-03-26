@@ -8,7 +8,10 @@ import axios from "axios";
 const Productos = () => {
   const cartStatus = useSelector((state) => state.cart.value.status);
   const [categories, setCategories] = useState([]);
-  const [filters, setFilters] = useState({sort: "-createdAt", category: null})
+  const [filters, setFilters] = useState({
+    sort: "-createdAt",
+    category: null,
+  });
 
   useEffect(() => {
     axios
@@ -21,8 +24,16 @@ const Productos = () => {
   return (
     <div className="w-full h-fit flex py-2">
       {cartStatus && <Cart />}
-      <ProductsSidebar categories={categories} filters={filters} setFilters={setFilters} />
-      <ProductList categories={categories} filters={filters} setFilters={setFilters} />
+      <ProductsSidebar
+        categories={categories}
+        filters={filters}
+        setFilters={setFilters}
+      />
+      <ProductList
+        categories={categories}
+        filters={filters}
+        setFilters={setFilters}
+      />
     </div>
   );
 };

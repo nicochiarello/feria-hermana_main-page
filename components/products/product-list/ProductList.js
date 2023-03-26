@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import MobileFilter from "../mobile-filter/MobileFilter";
 
-const ProductList = ({categories, filters, setFilters}) => {
+const ProductList = ({ categories, filters, setFilters }) => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
   const [nbPages, setNbPages] = useState(1);
@@ -23,14 +23,21 @@ const ProductList = ({categories, filters, setFilters}) => {
   }, [router.query]);
 
   return (
-    <div className="h-fit w-full md:w-[calc(100%-15rem)] px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+    <div className="h-fit w-full md:w-[calc(100%-15rem)] px-3 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
       {loader && (
         <div className="w-screen h-full absolute top-0 left-0 bg-opacity col-span-3 flex items-center justify-center">
           <ClipLoader color="white" size={60} />
         </div>
       )}
 
-      {mobileFilter && <MobileFilter filters={filters} setFilters={setFilters} categories={categories} onClose={() => setMobileFilter(false)} />}
+      {mobileFilter && (
+        <MobileFilter
+          filters={filters}
+          setFilters={setFilters}
+          categories={categories}
+          onClose={() => setMobileFilter(false)}
+        />
+      )}
 
       <ProductsFetcher
         page={page}

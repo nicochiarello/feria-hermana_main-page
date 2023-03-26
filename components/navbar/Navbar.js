@@ -11,7 +11,6 @@ const Navbar = () => {
   const [userOptions, setUserOptions] = useState(false);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const cart = useSelector((state) => state.cart.value.cart);
-  const cartStatus = useSelector((state) => state.cart.value.status);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const Navbar = () => {
           <Link href={"/"}>Inicio</Link>
           <Link href={"/productos?page=1"}>Productos</Link>
           <Link href={"/retiros"}>Retiros</Link>
-          <Link href={"#"}>Contacto</Link>
+          <a href={"https://wa.me/5492613662494"}>Contacto</a>
           <div
             onClick={() => dispatch(modifyStatus())}
             href={"#"}
@@ -52,8 +51,11 @@ const Navbar = () => {
             </span>
           </div>
         </div>
-        <div onClick={() => dispatch(modifyStatus())} className="md:hidden">
+        <div onClick={() => dispatch(modifyStatus())} className="relative md:hidden ">
           <i className="bx bx-cart text-3xl "></i>
+          <span className="absolute -top-2 text-xs bg-yellow-400 rounded-full pr-2 text-main">
+              {cart.length}
+            </span>
         </div>
       </div>
     </div>
