@@ -2,17 +2,18 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Cart from "../components/cart/Cart";
 import { useSelector } from "react-redux";
+import { ClipLoader } from "react-spinners";
 
 const Retiros = () => {
   const [withdrawals, setWithdrawals] = useState([]);
   const cartStatus = useSelector((state) => state.cart.value.status);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API}/api/withdrawals`
-      )
-      .then((res) => setWithdrawals(res.data.withdrawals));
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/withdrawals`).then((res) => {
+      setWithdrawals(res.data.withdrawals);
+      setLoader(false);
+    });
   }, []);
 
   return (
@@ -23,14 +24,24 @@ const Retiros = () => {
           <h3>Retiros</h3>
         </div>
         <div className="w-full h-full pt-12 pb-2 overflow-y-scroll">
-          {withdrawals.map((i) => {
-            return (
-              <div key={i._id} className="w-full py-3 flex items-center justify-between text-2xl px-4 border-y flex-wrap">
-                <p>{i.day} </p>
-                <p>{i.description}</p>
-              </div>
-            );
-          })}
+          {loader ? (
+            <div className="w-full h-full flex items-center justify-center">
+              {" "}
+              <ClipLoader size={120} />
+            </div>
+          ) : (
+            withdrawals.map((i) => {
+              return (
+                <div
+                  key={i._id}
+                  className="w-full py-3 flex items-center justify-between text-2xl px-4 border-y flex-wrap"
+                >
+                  <p>{i.day} </p>
+                  <p>{i.description}</p>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
