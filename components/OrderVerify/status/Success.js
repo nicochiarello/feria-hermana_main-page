@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Success = ({ order }) => {
   return (
@@ -43,7 +44,12 @@ const Success = ({ order }) => {
               <p>${order.total}</p>
             </div>
           </div>
-          {/* <button>Ver dias y horarios de retiro</button> */}
+          <Link
+            href={"/retiros"}
+            className="px-8 py-2 rounded-xl bg-btn text-white"
+          >
+            Consultar retiros
+          </Link>
         </div>
       </div>
     </div>

@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
-import Success from "../../../components/OrderVerify/status/Success";
-import Error from "../../../components/OrderVerify/status/Error";
-import VerifierHandler from "../../../components/OrderVerify/VerifierHandler";
+import VerifierHandler from "../../components/OrderVerify/VerifierHandler";
 
 const OrderVerify = () => {
   const [loader, setLoader] = useState(true);
