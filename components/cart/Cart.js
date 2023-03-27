@@ -12,6 +12,7 @@ const Cart = () => {
   const cartRef = useRef();
 
   useEffect(() => {
+    console.log("cambio")
     dispatch(modifyStatus());
     
   }, [router]);
