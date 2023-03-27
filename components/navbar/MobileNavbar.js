@@ -9,6 +9,7 @@ const MobileNavbar = ({ onClose }) => {
       onClose();
     }
   };
+  
   return (
     <div
       ref={ref}

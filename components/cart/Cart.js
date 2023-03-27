@@ -11,12 +11,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cartRef = useRef();
 
-  useEffect(() => {
-    console.log("cambio")
-    dispatch(modifyStatus());
-    
-  }, [router]);
-
   const handleClick = (e) => {
     if (e.target === cartRef.current) {
       console.log(e.target === cartRef.current);
