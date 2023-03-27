@@ -34,12 +34,10 @@ const ProductItem = ({ item, cart }) => {
       className="w-full h-[22rem] bg-white rounded-xl overflow-hidden shadow-xl font-light max-w-[25rem]"
     >
       <div className="w-full h-[14rem]">
-        <Image
+        <img
           className="w-full h-full object-cover"
           src={process.env.NEXT_PUBLIC_IMAGE_URL + "/" + item.images[0].secureUrl}
           alt={item.name}
-          width={500}
-          height={500}
         />
       </div>
       <div className="px-2 py-2 text-md flex flex-col h-[8rem] justify-between">

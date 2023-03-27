@@ -15,9 +15,9 @@ const ProductsFetcher = ({ setData, query, setLoader, setNbPages, page }) => {
       setLoader(true);
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_HOST}:${
-            process.env.NEXT_PUBLIC_PORT
-          }/api/products?page=${page}${queryAux && queryAux}`,
+          `${process.env.NEXT_PUBLIC_API}/api/products?page=${page}${
+            queryAux && queryAux
+          }`,
           {
             cancelToken: source.token,
           }
