@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import Cart from "../../components/cart/Cart";
 
 const Procesamiento = () => {
   const router = useRouter();
@@ -24,7 +23,7 @@ const Procesamiento = () => {
     setLoader(true);
     axios
       .post(
-        `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/orders/create`,
+        `${process.env.NEXT_PUBLIC_API}/api/orders/create`,
         { ...form, products: cart.map((i) => i._id) }
       )
       .then((res) => {

@@ -14,7 +14,7 @@ const OrderVerify = () => {
     if (id) {
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/orders/${id}/info`
+          `${process.env.NEXT_PUBLIC_API}/api/orders/${id}/info`
         )
         .then((res) => {
           setOrder(res.data);

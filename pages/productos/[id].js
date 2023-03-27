@@ -37,7 +37,7 @@ const ProductDetails = () => {
     if (id) {
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/product/${id}`
+          `${process.env.NEXT_PUBLIC_API}/api/product/${id}`
         )
         .then((res) => {
           setProduct(res.data.product);

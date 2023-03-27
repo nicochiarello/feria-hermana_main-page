@@ -10,7 +10,7 @@ const Retiros = () => {
   useEffect(() => {
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/withdrawals`
+        `${process.env.NEXT_PUBLIC_API}/api/withdrawals`
       )
       .then((res) => setWithdrawals(res.data.withdrawals));
   }, []);

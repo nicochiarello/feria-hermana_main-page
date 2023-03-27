@@ -16,7 +16,7 @@ const Productos = () => {
   useEffect(() => {
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_PORT}/api/categories`
+        `${process.env.NEXT_PUBLIC_API}/api/categories`
       )
       .then((res) => setCategories(res.data.categories));
   }, []);
