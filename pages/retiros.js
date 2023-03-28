@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Cart from "../components/cart/Cart";
 import { useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
+import Head from "next/head";
 
 const Retiros = () => {
   const [withdrawals, setWithdrawals] = useState([]);
@@ -18,6 +19,12 @@ const Retiros = () => {
 
   return (
     <div className="w-full min-h-[calc(100vh-5rem)] px-2 flex items-center justify-center">
+      <Head>
+        <title>Retiros</title>
+        <meta name="description" content="Feria hermana retiros" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {cartStatus && <Cart />}
       <div className="w-[900px] h-[500px] relative rounded-xl bg-white shadow-2xl flex items-center justify-center">
         <div className="absolute top-[0] px-12 py-2 bg-main rounded-2xl text-white -translate-y-[1rem] ">

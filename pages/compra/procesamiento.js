@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import Head from "next/head";
 
 const Procesamiento = () => {
   const router = useRouter();
@@ -22,10 +23,10 @@ const Procesamiento = () => {
   const submitForm = () => {
     setLoader(true);
     axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API}/api/orders/create`,
-        { ...form, products: cart.map((i) => i._id) }
-      )
+      .post(`${process.env.NEXT_PUBLIC_API}/api/orders/create`, {
+        ...form,
+        products: cart.map((i) => i._id),
+      })
       .then((res) => {
         setLoader(false);
         router.push(res.data.mp);
@@ -51,6 +52,12 @@ const Procesamiento = () => {
 
   return (
     <div className="w-full min-h-[calc(100vh-7rem)] px-2 sm:px-4 flex items-center justify-center my-4">
+      <Head>
+        <title>Procesamiento</title>
+        <meta name="description" content="Feria hermana store" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="w-full min-h-[85%] py-5 px-6 flex flex-col justify-center items-center shadow-2xl rounded-xl bg-white">
         <div className="flex items-start w-full font-semibold border-b py-4 text-lg">
           <p>Detalles personales</p>

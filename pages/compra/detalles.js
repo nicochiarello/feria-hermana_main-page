@@ -1,22 +1,29 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CartItem from "../../components/process/cart/CartItem";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const ProcessDetails = () => {
   const cart = useSelector((state) => state.cart.value.cart);
-  const cartPrice = useSelector((state) => state.cart.value.price)
-  const router = useRouter()
+  const cartPrice = useSelector((state) => state.cart.value.price);
+  const router = useRouter();
 
-  useEffect(()=>{
-    if(!cart.length){
-      router.push("/productos")
+  useEffect(() => {
+    if (!cart.length) {
+      router.push("/productos");
     }
-  },[cart])
+  }, [cart]);
 
   return (
     <div className="w-full h-[calc(100vh-5rem)]  px-4 flex items-center justify-center gap-6 ">
+      <Head>
+        <title>Detalles</title>
+        <meta name="description" content="Feria hermana store" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="w-full h-[85%] px-2 sm:p-5 flex flex-col justify-between shadow-2xl bg-white rounded-xl ">
         <div className="flex w-full h-[4rem] justify-center sm:justify-between items-center">
           <h3 className="text-xl">Detalles de compra</h3>
@@ -48,7 +55,10 @@ const ProcessDetails = () => {
           <div className="flex gap-3">
             <p>Total: ${cartPrice}</p>
           </div>
-          <Link href="procesamiento" className="px-10 py-2 rounded-xl bg-btn text-white flex items-center justify-center">
+          <Link
+            href="procesamiento"
+            className="px-10 py-2 rounded-xl bg-btn text-white flex items-center justify-center"
+          >
             <p>Confirmar</p>
           </Link>
         </div>

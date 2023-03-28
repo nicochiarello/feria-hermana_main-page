@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Cart from "../components/cart/Cart";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Head from "next/head";
 
 const Productos = () => {
   const cartStatus = useSelector((state) => state.cart.value.status);
@@ -15,14 +16,18 @@ const Productos = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API}/api/categories`
-      )
+      .get(`${process.env.NEXT_PUBLIC_API}/api/categories`)
       .then((res) => setCategories(res.data.categories));
   }, []);
 
   return (
     <div className="w-full h-fit flex py-2">
+      <Head>
+        <title>Productos</title>
+        <meta name="description" content="Feria hermana productos" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {cartStatus && <Cart />}
       <ProductsSidebar
         categories={categories}

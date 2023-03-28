@@ -6,6 +6,7 @@ import { add } from "../../slices/cart/cartSlice";
 import { toast } from "react-hot-toast";
 import Cart from "../../components/cart/Cart";
 import { ClipLoader } from "react-spinners";
+import Head from "next/head";
 
 const ProductDetails = () => {
   const [loader, setLoader] = useState(true);
@@ -93,6 +94,12 @@ const ProductDetails = () => {
 
   return (
     <div className="w-full min-h-[calc(100vh-5rem)]  px-2 flex items-center justify-center gap-6 ">
+      <Head>
+        <title>Producto info</title>
+        <meta name="description" content="Feria hermana store" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {cartStatus && <Cart />}
       <div className="w-full sm:px-12 max-w-[50rem] my-4 py-4 lg:max-w-full md:w-full h-fit xl:h-[38rem] lg:p-8 flex flex-col gap-4 lg:flex-row shadow-2xl bg-white rounded-2xl justify-between">
         {loader ? (
