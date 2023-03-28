@@ -23,7 +23,7 @@ const Cart = () => {
       ref={cartRef}
       className="bg-black w-full h-screen fixed top-0 left-0 flex justify-end bg-opacity z-50"
     >
-      <div className="w-full sm:w-[28rem] h-full bg-white py-3 px-2">
+      <div className="w-full max-w-[22rem] pb-12 sm:pb-0 sm:w-[28rem] h-full bg-white py-3 px-2">
         <div className="flex items-center justify-between sm:justify-center">
           <h4 className="text-lg">Productos seleccionados</h4>
           <div
