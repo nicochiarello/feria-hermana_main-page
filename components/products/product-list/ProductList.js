@@ -47,13 +47,13 @@ const ProductList = ({ categories, filters, setFilters }) => {
         query={filters}
       />
 
-      <div className="w-full col-span-full py-4 bg-white flex justify-between md:justify-end items-center px-4 rounded-xl">
-        <div
+      <div className="w-full col-span-full py-4 bg-white flex justify-end items-center px-4 rounded-xl">
+        {/* <div
           onClick={() => setMobileFilter(true)}
           className="md:hidden w-[2rem] h-[2rem] rounded-full bg-btn flex items-center justify-center cursor-pointer"
         >
           <i className="bx bx-filter text-xl text-white"></i>
-        </div>
+        </div> */}
         <div className="flex gap-4 items-center">
           <i className="bx bx-chevron-left"></i>
           <div className="flex gap-2">

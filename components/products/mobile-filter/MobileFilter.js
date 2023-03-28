@@ -1,10 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 const MobileFilter = ({ onClose, categories, filters, setFilters }) => {
-  const [query, setQuery] = useState({ filter: null, category: null });
+  const [query, setQuery] = useState({ sort: null, category: null });
   const containerRef = useRef();
   const router = useRouter();
+
+  console.log({query})
+
+  useEffect(() => {
+    if (filters.sort) {
+      setQuery({ ...query, sort: filters.sort });
+    }
+  }, [filters]);
 
   const handleClose = (e) => {
     if (e.target === containerRef.current) {
@@ -13,17 +21,17 @@ const MobileFilter = ({ onClose, categories, filters, setFilters }) => {
   };
 
   const handleFilter = () => {
-    if(query.filter){
-        setFilters({...filters, sort: query.filter})
+
+
+    setFilters({ ...filters, sort: "hola" });
+
+    if (query.category && query !== "null") {
+      setFilters({ ...filters, category: query.category });
+    } else {
+      setFilters({ ...filters, category: null });
     }
 
-    if(query.category && query !== "null"){
-        setFilters({...filters, category: query.category})
-    }else{
-        setFilters({...filters, category: null})
-    }
-
-    onClose()
+    onClose();
   };
 
   return (
@@ -45,14 +53,14 @@ const MobileFilter = ({ onClose, categories, filters, setFilters }) => {
             <p>Filtrar por:</p>
             <select
               onChange={(e) => {
-                setQuery({ ...query, filter: e.target.value });
+                setQuery({ ...query, sort: e.target.value });
               }}
-              value={filters.sort}
+          
               className="w-full py-2 rounded-xl border border-btn focus:ring-btn focus:border-btn"
             >
               <option value="-createdAt">Mas nuevos</option>
               <option value="-price">Precio (Mayor a menor)</option>
-              <option value="price">Precio (Menor a menor)</option>
+              <option value="price">Precio (Menor a mayor)</option>
             </select>
           </div>
           <div className="flex flex-col gap-2">
@@ -64,10 +72,12 @@ const MobileFilter = ({ onClose, categories, filters, setFilters }) => {
               value={filters.category}
               className="w-full py-2 rounded-xl border border-btn focus:ring-btn focus:border-btn"
             >
-              <option selected disabled>Categoria</option>
+              <option selected disabled>
+                Categoria
+              </option>
               {categories.map((i) => {
                 return (
-                  <option key={i} value={i._id}>
+                  <option key={i._id} value={i._id}>
                     {i.name}
                   </option>
                 );
