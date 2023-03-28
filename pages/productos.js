@@ -13,8 +13,6 @@ const Productos = () => {
     category: null,
   });
 
-  console.log({filters}, "desde productos")
-
   useEffect(() => {
     axios
       .get(

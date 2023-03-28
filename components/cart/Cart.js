@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { modifyStatus } from "../../slices/cart/cartSlice";
+import { modifyStatus, close } from "../../slices/cart/cartSlice";
 import { remove, emptyCart } from "../../slices/cart/cartSlice";
 import { useRouter } from "next/router";
 
@@ -13,10 +13,22 @@ const Cart = () => {
 
   const handleClick = (e) => {
     if (e.target === cartRef.current) {
-      console.log(e.target === cartRef.current);
       dispatch(modifyStatus());
     }
   };
+
+  useEffect(()=>{
+    let handleClose = () => {
+      dispatch(close())
+    }
+    router.events.on("routeChangeComplete", handleClose);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleClose);
+ 
+    };
+  }, [router])
+
   return (
     <div
       onClick={handleClick}
@@ -83,7 +95,11 @@ const Cart = () => {
             </p>
           </div>
           <button
-            onClick={() => router.push("/compra/detalles")}
+            onClick={() => {
+              if (cart.length) {
+                router.push("/compra/detalles");
+              }
+            }}
             className="px-6 py-2 bg-btn text-white w-full rounded-xl"
           >
             <p>Confirmar compra</p>

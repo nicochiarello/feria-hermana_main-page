@@ -25,6 +25,9 @@ export const cartSlice = createSlice({
       );
       state.value.cart = filteredCart;
     },
+    close: (state)=>{
+      state.value.status= false
+    },
     modifyStatus: (state) => {
       state.value.status = !state.value.status;
     },
@@ -38,6 +41,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { add, remove, modifyStatus, emptyCart } = cartSlice.actions;
+export const { add, remove, modifyStatus, emptyCart, close } = cartSlice.actions;
 
 export default cartSlice.reducer;
