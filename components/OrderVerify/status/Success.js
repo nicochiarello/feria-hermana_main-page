@@ -44,12 +44,14 @@ const Success = ({ order }) => {
               <p>${order.total}</p>
             </div>
           </div>
-          <Link
-            href={"/retiros"}
-            className="px-8 py-2 rounded-xl bg-btn text-white"
-          >
-            Consultar retiros
-          </Link>
+          <div className="w-full flex items-center justify-center py-2">
+            <Link
+              href={"/retiros"}
+              className="w-fit px-8 py-2 rounded-xl bg-btn text-white"
+            >
+              Consultar retiros
+            </Link>
+          </div>
         </div>
       </div>
     </div>
