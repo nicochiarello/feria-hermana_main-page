@@ -15,7 +15,7 @@ const ProductsFetcher = ({ setData, query, setLoader, setNbPages, page }) => {
       setLoader(true);
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_API}/api/products?page=${page}${
+          `${process.env.NEXT_PUBLIC_API}/api/products?reserved=false&page=${page}${
             queryAux && queryAux
           }`,
           {

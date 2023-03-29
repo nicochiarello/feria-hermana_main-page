@@ -5,6 +5,7 @@ import Cart from "../components/cart/Cart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 
 const Productos = () => {
   const cartStatus = useSelector((state) => state.cart.value.status);
@@ -28,6 +29,7 @@ const Productos = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Toaster/>
       {cartStatus && <Cart />}
       <ProductsSidebar
         categories={categories}

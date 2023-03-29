@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { emptyCart } from "../../slices/cart/cartSlice";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import Head from "next/head";
+import { toast } from "react-hot-toast";
 
 const Procesamiento = () => {
   const router = useRouter();
@@ -11,6 +14,7 @@ const Procesamiento = () => {
   const cart = useSelector((state) => state.cart.value.cart);
   const [form, setForm] = useState({ total: price });
   const [deliveryDetails, setDeliveryDetails] = useState(false);
+  const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -32,8 +36,14 @@ const Procesamiento = () => {
         router.push(res.data.mp);
       })
       .catch((err) => {
-        setErrors(err.response.data);
-        setLoader(false);
+        if (err.response.data.stock) {
+          dispatch(emptyCart());
+          toast.error("Error de stock");
+          router.push("/productos");
+        } else {
+          setErrors(err.response.data);
+          setLoader(false);
+        }
       });
   };
 

@@ -75,10 +75,10 @@ const ProductList = ({ categories, filters, setFilters }) => {
           <i className="bx bx-chevron-right"></i>
         </div>
       </div>
-
-      {products.map((i) => {
+      {!loader && products.length ? products.map((i) => {
         return <ProductItem cart={cart} key={i._id} item={i} />;
-      })}
+      }) : <div className="col-span-full h-full">Estamos trabajando para traerte los mejores productos!</div>  }
+      {}
     </div>
   );
 };
