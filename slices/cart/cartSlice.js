@@ -24,6 +24,7 @@ export const cartSlice = createSlice({
         (i) => i._id !== item.payload._id
       );
       state.value.cart = filteredCart;
+      state.value.price -= item.payload.price
     },
     close: (state)=>{
       state.value.status= false

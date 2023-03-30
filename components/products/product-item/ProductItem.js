@@ -23,7 +23,6 @@ const ProductItem = ({ item, cart }) => {
     if (!cart.includes(item)) {
       dispatch(add(item));
     } else {
-      console.log("item a mandar", item);
       dispatch(remove(item));
     }
   };
