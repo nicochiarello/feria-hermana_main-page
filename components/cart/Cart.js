@@ -17,17 +17,16 @@ const Cart = () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     let handleClose = () => {
-      dispatch(close())
-    }
+      dispatch(close());
+    };
     router.events.on("routeChangeComplete", handleClose);
 
     return () => {
       router.events.off("routeChangeComplete", handleClose);
- 
     };
-  }, [router])
+  }, [router]);
 
   return (
     <div
@@ -53,15 +52,17 @@ const Cart = () => {
             >
               <div className="flex gap-4">
                 <div className="w-[5rem] h-full rounded-xl overflow-hidden">
-                  <img
-                    className="w-full h-full object-cover"
-                    src={
-                      process.env.NEXT_PUBLIC_IMAGE_URL +
-                      "/" +
-                      i.images[0].secureUrl
-                    }
-                    alt=""
-                  />
+                  {i.images && (
+                    <img
+                      className="w-full h-full object-cover"
+                      src={
+                        process.env.NEXT_PUBLIC_IMAGE_URL +
+                        "/" +
+                        i.images[0].secureUrl
+                      }
+                      alt=""
+                    />
+                  )}
                 </div>
                 <div className="flex flex-col h-full justify-between py-1">
                   <p>{i.name}</p>
