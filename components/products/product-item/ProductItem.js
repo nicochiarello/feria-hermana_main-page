@@ -27,6 +27,14 @@ const ProductItem = ({ item, cart }) => {
     }
   };
 
+  const imageIndex = () => {
+    let images = item.images;
+
+    let index = Object.entries(images)[0][0];
+    return index;
+  };
+
+  imageIndex();
   return (
     <Link
       href={`/productos/${item._id}`}
@@ -37,7 +45,9 @@ const ProductItem = ({ item, cart }) => {
           <img
             className="w-full h-full object-cover"
             src={
-              process.env.NEXT_PUBLIC_IMAGE_URL + "/" + item.images[0].secureUrl
+              process.env.NEXT_PUBLIC_IMAGE_URL +
+              "/" +
+              item.images[imageIndex()].secureUrl
             }
             alt={item.name}
           />
